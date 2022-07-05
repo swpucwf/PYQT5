@@ -1,53 +1,54 @@
 # -*- coding: utf-8 -*-
-# Form implementation generated from reading ui file '5.4.ui'
+
+# Form implementation generated from reading ui file '5.12.ui'
 #
 # Created by: PyQt5 UI code generator 5.13.2
 #
 # WARNING! All changes made in this file will be lost!
+
+
 from PyQt5 import QtCore, QtGui, QtWidgets
+
+
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
         MainWindow.setObjectName("MainWindow")
-        MainWindow.resize(284, 97)
+        MainWindow.resize(244, 97)
         self.centralwidget = QtWidgets.QWidget(MainWindow)
         self.centralwidget.setObjectName("centralwidget")
-        self.spinBox = QtWidgets.QSpinBox(self.centralwidget)
-        self.spinBox.setGeometry(QtCore.QRect(20, 10, 101, 22))
-        self.spinBox.setObjectName("spinBox")
-        self.spinBox.setMinimum(0) # 设置最小值
-        self.spinBox.setMaximum(100) # 设置最大值
-        self.spinBox.setSingleStep(2) # 设置步长值
-
-        # # 通过setRange()方法设置最小值、最大值,等同于setMinimum和setMaximum
-        self.spinBox.setRange(0,100)
-
         self.label = QtWidgets.QLabel(self.centralwidget)
-        self.label.setGeometry(QtCore.QRect(20, 40, 131, 16))
+        self.label.setGeometry(QtCore.QRect(30, 20, 41, 16))
         self.label.setObjectName("label")
+
+        self.comboBox = QtWidgets.QComboBox(self.centralwidget)
+        self.comboBox.setGeometry(QtCore.QRect(70, 15, 141, 22))
+        self.comboBox.setObjectName("comboBox")
+
+
         self.label_2 = QtWidgets.QLabel(self.centralwidget)
-        self.label_2.setGeometry(QtCore.QRect(150, 40, 54, 12))
+        self.label_2.setGeometry(QtCore.QRect(35, 56, 171, 16))
         self.label_2.setText("")
         self.label_2.setObjectName("label_2")
-
         MainWindow.setCentralWidget(self.centralwidget)
-        self.menubar = QtWidgets.QMenuBar(MainWindow)
-        self.menubar.setGeometry(QtCore.QRect(0, 0, 284, 23))
-        self.menubar.setObjectName("menubar")
-        MainWindow.setMenuBar(self.menubar)
 
         self.retranslateUi(MainWindow)
-        # 将valueChanged信号与自定义槽函数相关联
-        self.spinBox.valueChanged.connect(self.getvalue)
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
 
-    # 获取SpinBox的当前值，并显示在Label中
-    def getvalue(self):
-        self.label_2.setText(str(self.spinBox.value()))
+        # 定义职位列表
+        list=["总经理", "副总经理", "人事部经理", "财务部经理", "部门经理", "普通员工" ]
+        self.comboBox.addItems(list) # 将职位列表添加到ComboBox下拉列表中
+        # 将ComboBox控件的选项更改信号与自定义槽函数关联
+        self.comboBox.currentIndexChanged.connect(self.showinfo)
+
+    def showinfo(self):
+        self.label_2.setText("您选择的职位是："+self.comboBox.currentText()) # 显示选择的职位
+
 
     def retranslateUi(self, MainWindow):
         _translate = QtCore.QCoreApplication.translate
         MainWindow.setWindowTitle(_translate("MainWindow", "MainWindow"))
-        self.label.setText(_translate("MainWindow", "当前控件中显示的数值："))
+        self.label.setText(_translate("MainWindow", "职位："))
+
 
 import sys
 # 主方法，程序从此处启动PyQt设计的窗体
