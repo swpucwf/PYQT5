@@ -5,8 +5,6 @@
 # Created by: PyQt5 UI code generator 5.13.2
 #
 # WARNING! All changes made in this file will be lost!
-
-
 from PyQt5 import QtCore, QtGui, QtWidgets
 from PyQt5.QtWidgets import QMessageBox
 
@@ -70,6 +68,7 @@ class Ui_MainWindow(object):
             QMessageBox.information(MainWindow, "提示","您选择的是 管理员  登录", QMessageBox.Ok)
         elif self.radioButton_2.isChecked(): # 判断是否为普通用户登录
             QMessageBox.information(MainWindow, "提示", "您选择的是 普通用户  登录", QMessageBox.Ok)
+
 
     def retranslateUi(self, MainWindow):
         _translate = QtCore.QCoreApplication.translate
