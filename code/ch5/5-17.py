@@ -32,10 +32,10 @@ class Ui_MainWindow(object):
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
 
         # # 获取当前系统日期时间（或日期，或时间）
-        # datetime= QtCore.QDateTime.currentDateTime() # 获取当前系统日期时间
-        # date=QtCore.QDate.currentDate() # 获取当前日期
-        # time=QtCore.QTime.currentTime() # 获取当前时间
-        # print(datetime,date,time)
+        datetime= QtCore.QDateTime.currentDateTime() # 获取当前系统日期时间
+        date=QtCore.QDate.currentDate() # 获取当前日期
+        time=QtCore.QTime.currentTime() # 获取当前时间
+        print(datetime,date,time)
 
     def getdate(self):
         from PyQt5.QtWidgets import QMessageBox
