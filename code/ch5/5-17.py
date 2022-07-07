@@ -13,17 +13,21 @@ class Ui_MainWindow(object):
         self.centralwidget.setObjectName("centralwidget")
         self.calendarWidget = QtWidgets.QCalendarWidget(self.centralwidget)
         self.calendarWidget.setGeometry(QtCore.QRect(20, 10, 248, 197))
+
         self.calendarWidget.setSelectedDate(QtCore.QDate(2020, 3, 23)) # 设置默认选中的日期
         self.calendarWidget.setMinimumDate(QtCore.QDate(1752, 9, 14)) # 设置最小日期
         self.calendarWidget.setMaximumDate(QtCore.QDate(9999, 12, 31)) # 设置最大日期
         self.calendarWidget.setFirstDayOfWeek(QtCore.Qt.Monday) # 设置每周第一天为星期一
-        self.calendarWidget.setGridVisible(True) # 设置网格线课件
+        self.calendarWidget.setGridVisible(True) # 设置网格线课件,添加网格
+
+        # QtWidgets.QCalendarWidget.SingleSelection
         self.calendarWidget.setSelectionMode(QtWidgets.QCalendarWidget.SingleSelection) # 设置可以选中单个日期
         self.calendarWidget.setHorizontalHeaderFormat(QtWidgets.QCalendarWidget.ShortDayNames) # 设置水平表头为简短形式，即“周一”形式
         self.calendarWidget.setVerticalHeaderFormat(QtWidgets.QCalendarWidget.ISOWeekNumbers) # 设置垂直表头为周数
         self.calendarWidget.setNavigationBarVisible(True) # 设置显示导航栏
         self.calendarWidget.setDateEditEnabled(True) # 设置日期可以编辑
         self.calendarWidget.setObjectName("calendarWidget")
+
         # 选中日期变化时显示选择的日期
         self.calendarWidget.selectionChanged.connect(self.getdate)
         MainWindow.setCentralWidget(self.centralwidget)
@@ -48,6 +52,7 @@ class Ui_MainWindow(object):
     def retranslateUi(self, MainWindow):
         _translate = QtCore.QCoreApplication.translate
         MainWindow.setWindowTitle(_translate("MainWindow", "MainWindow"))
+
 
 import sys
 # 主方法，程序从此处启动PyQt设计的窗体

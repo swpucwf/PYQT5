@@ -1,18 +1,20 @@
+### 进度条类控件
+```python
+
 # -*- coding: utf-8 -*-
 # Form implementation generated from reading ui file '6.1.ui'
 #
 # Created by: PyQt5 UI code generator 5.13.2
 #
 # WARNING! All changes made in this file will be lost!
-from PyQt5 import QtCore, QtGui, QtWidgets
+from PyQt5 import QtCore, QtWidgets
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
-
         MainWindow.setObjectName("MainWindow")
         MainWindow.resize(305, 259)
         self.centralwidget = QtWidgets.QWidget(MainWindow)
+        
         self.centralwidget.setObjectName("centralwidget")
-
         self.progressBar = QtWidgets.QProgressBar(self.centralwidget)
         self.progressBar.setGeometry(QtCore.QRect(50, 10, 201, 31))
         self.progressBar.setLayoutDirection(QtCore.Qt.LeftToRight)
@@ -23,8 +25,7 @@ class Ui_MainWindow(object):
         self.progressBar.setTextDirection(QtWidgets.QProgressBar.TopToBottom)
         self.progressBar.setFormat("")
         self.progressBar.setObjectName("progressBar")
-
-
+        
         self.progressBar_2 = QtWidgets.QProgressBar(self.centralwidget)
         self.progressBar_2.setGeometry(QtCore.QRect(50, 180, 201, 31))
         self.progressBar_2.setLayoutDirection(QtCore.Qt.RightToLeft)
@@ -34,8 +35,7 @@ class Ui_MainWindow(object):
         self.progressBar_2.setOrientation(QtCore.Qt.Horizontal)
         self.progressBar_2.setTextDirection(QtWidgets.QProgressBar.TopToBottom)
         self.progressBar_2.setObjectName("progressBar_2")
-
-
+        
         self.progressBar_3 = QtWidgets.QProgressBar(self.centralwidget)
         self.progressBar_3.setGeometry(QtCore.QRect(20, 10, 31, 201))
         self.progressBar_3.setLayoutDirection(QtCore.Qt.LeftToRight)
@@ -45,8 +45,7 @@ class Ui_MainWindow(object):
         self.progressBar_3.setOrientation(QtCore.Qt.Vertical)
         self.progressBar_3.setTextDirection(QtWidgets.QProgressBar.TopToBottom)
         self.progressBar_3.setObjectName("progressBar_3")
-
-
+        
         self.progressBar_1 = QtWidgets.QProgressBar(self.centralwidget)
         self.progressBar_1.setGeometry(QtCore.QRect(250, 10, 31, 201))
         self.progressBar_1.setLayoutDirection(QtCore.Qt.LeftToRight)
@@ -56,11 +55,9 @@ class Ui_MainWindow(object):
         self.progressBar_1.setOrientation(QtCore.Qt.Vertical)
         self.progressBar_1.setTextDirection(QtWidgets.QProgressBar.TopToBottom)
         self.progressBar_1.setObjectName("progressBar_1")
-
         self.pushButton = QtWidgets.QPushButton(self.centralwidget)
         self.pushButton.setGeometry(QtCore.QRect(90, 220, 101, 31))
         self.pushButton.setObjectName("pushButton")
-
         MainWindow.setCentralWidget(self.centralwidget)
 
         self.retranslateUi(MainWindow)
@@ -69,12 +66,9 @@ class Ui_MainWindow(object):
         self.timer = QtCore.QBasicTimer() # 创建定时器对象
         # 为按钮绑定单击信号
         self.pushButton.clicked.connect(self.running)
-        # 控制进度条的滚动效果
-
+    # 控制进度条的滚动效果
     def running(self):
-
         if self.timer.isActive(): # 判断计时器是否开启
-
             self.timer.stop() # 停止计时器
             self.pushButton.setText('开始')# 设置按钮的文本
             # 设置4个进度条的最大值为100
@@ -83,12 +77,12 @@ class Ui_MainWindow(object):
             self.progressBar_2.setMaximum(100)
             self.progressBar_3.setMaximum(100)
         else:
-
             self.timer.start(100,MainWindow) # 启动计时器
             self.pushButton.setText('停止') # 设置按钮的文本
             # 将4个进度条的最大值和最小值都设置为0，以便显示循环滚动的效果
             self.progressBar.setMinimum(0)
             self.progressBar.setMaximum(0)
+            
             self.progressBar_1.setInvertedAppearance(True) # 设置进度反方向显示
             self.progressBar_1.setMinimum(0)
             self.progressBar_1.setMaximum(0)
@@ -96,6 +90,7 @@ class Ui_MainWindow(object):
             self.progressBar_2.setMaximum(0)
             self.progressBar_3.setMinimum(0)
             self.progressBar_3.setMaximum(0)
+
 
     def retranslateUi(self, MainWindow):
         _translate = QtCore.QCoreApplication.translate
@@ -111,3 +106,72 @@ if __name__ == '__main__':
    ui.setupUi(MainWindow) # 调用PyQt窗体的方法对窗体对象进行初始化设置
    MainWindow.show() # 显示窗体
    sys.exit(app.exec_()) # 程序关闭时退出进程
+```
+![image-20220707124852198](images/ch8/image-20220707124852198.png)
+
+### 自定义提示框
+
+```python
+# -*- coding: utf-8 -*-
+
+# Form implementation generated from reading ui file '6.2.ui'
+#
+# Created by: PyQt5 UI code generator 5.13.2
+#
+# WARNING! All changes made in this file will be lost!
+
+from PyQt5 import QtCore, QtGui, QtWidgets
+
+
+class Ui_MainWindow(object):
+    def setupUi(self, MainWindow):
+        MainWindow.setObjectName("MainWindow")
+        MainWindow.resize(400, 227)
+        self.centralwidget = QtWidgets.QWidget(MainWindow)
+        self.centralwidget.setObjectName("centralwidget")
+        self.loading = QtWidgets.QLabel(self.centralwidget)
+        self.loading.setGeometry(QtCore.QRect(150, 20, 100, 100))
+        self.loading.setStyleSheet("")
+        self.loading.setText("")
+        self.loading.setObjectName("loading")
+        self.pushButton_start = QtWidgets.QPushButton(self.centralwidget)
+        self.pushButton_start.setGeometry(QtCore.QRect(50, 140, 100, 50))
+        self.pushButton_start.setObjectName("pushButton_start")
+        self.pushButton_stop = QtWidgets.QPushButton(self.centralwidget)
+        self.pushButton_stop.setGeometry(QtCore.QRect(250, 140, 100, 50))
+        self.pushButton_stop.setObjectName("pushButton_stop")
+        MainWindow.setCentralWidget(self.centralwidget)
+
+        self.retranslateUi(MainWindow)
+        QtCore.QMetaObject.connectSlotsByName(MainWindow)
+        self.pushButton_start.clicked.connect(self.start_loading)  # 启动加载提示框
+        self.pushButton_stop.clicked.connect(self.stop_loading)  # 停止加载提示框
+
+    def start_loading(self):
+        self.gif = QtGui.QMovie('loading.gif')  # 加载gif图片
+        self.loading.setMovie(self.gif)  # 设置gif图片
+        self.gif.start()  # 启动图片，实现等待gif图片的显示
+
+    def stop_loading(self):
+        self.gif.stop()
+        self.loading.clear()
+
+    def retranslateUi(self, MainWindow):
+        _translate = QtCore.QCoreApplication.translate
+        MainWindow.setWindowTitle(_translate("MainWindow", "MainWindow"))
+        self.pushButton_start.setText(_translate("MainWindow", "启动等待提示"))
+        self.pushButton_stop.setText(_translate("MainWindow", "停止等待提示"))
+
+
+import sys
+# 主方法，程序从此处启动PyQt设计的窗体
+if __name__ == '__main__':
+   app = QtWidgets.QApplication(sys.argv)
+   MainWindow = QtWidgets.QMainWindow() # 创建窗体对象
+   ui = Ui_MainWindow() # 创建PyQt设计的窗体对象
+   ui.setupUi(MainWindow) # 调用PyQt窗体的方法对窗体对象进行初始化设置
+   MainWindow.show() # 显示窗体
+   sys.exit(app.exec_()) # 程序关闭时退出进程
+
+```
+
