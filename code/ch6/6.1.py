@@ -83,7 +83,6 @@ class Ui_MainWindow(object):
             self.progressBar_2.setMaximum(100)
             self.progressBar_3.setMaximum(100)
         else:
-
             self.timer.start(100,MainWindow) # 启动计时器
             self.pushButton.setText('停止') # 设置按钮的文本
             # 将4个进度条的最大值和最小值都设置为0，以便显示循环滚动的效果
@@ -96,8 +95,8 @@ class Ui_MainWindow(object):
             self.progressBar_2.setMaximum(0)
             self.progressBar_3.setMinimum(0)
             self.progressBar_3.setMaximum(0)
-
     def retranslateUi(self, MainWindow):
+
         _translate = QtCore.QCoreApplication.translate
         MainWindow.setWindowTitle(_translate("MainWindow", "跑马灯效果"))
         self.pushButton.setText(_translate("MainWindow", "开始"))
